@@ -27,7 +27,13 @@ public class Order {
 
     //an order has a list of products and a product can refers or not to just one order?
     @OneToMany(mappedBy = "order")
-    private List<Product> products = new ArrayList<Product>();
+    private List<SoldProduct> soldProducts = new ArrayList<SoldProduct>();
+
+    @Column(name = "SHIPPING_ADDRESS")
+    private String shippingAddress;
+
+    @Column(name = "PAYMENT_METHOD")
+    private String paymentMethod;
 
     //total price as an aggregate attribute (sum all product.price)
 }

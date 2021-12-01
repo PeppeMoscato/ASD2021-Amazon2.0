@@ -25,10 +25,6 @@ public class Product implements Serializable {
     @Column(name = "Description", nullable = true)
     private String description;
 
-    //available quantity?
-    @Column(name = "AvailableQuantity", nullable = false)
-    private String availableQuantity;
-
     //price? Float or Integer?
     @Column(name = "Price", nullable = false)
     private Float price;
@@ -41,10 +37,6 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name="SELLER_ID")
     private SellerAccount seller;
-
-    @ManyToOne
-    @JoinColumn(name="ORDER_ID")
-    private Order order;
 
     //CATEGORY = ENUM?
 }
