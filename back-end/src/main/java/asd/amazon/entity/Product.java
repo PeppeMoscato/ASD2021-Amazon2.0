@@ -5,10 +5,11 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "Product")
-@Data
 public class Product implements Serializable {
 
     @Id
@@ -19,4 +20,31 @@ public class Product implements Serializable {
 
     @Column(name = "Name", nullable = false)
     private String name;
+
+    //description
+    @Column(name = "Description", nullable = true)
+    private String description;
+
+    //available quantity?
+    @Column(name = "AvailableQuantity", nullable = false)
+    private String availableQuantity;
+
+    //price? Float or Integer?
+    @Column(name = "Price", nullable = false)
+    private Float price;
+
+    //addition date? (to identify when a product was added by a seller)
+    @Basic(optional = false)
+    @Column(name = "ADDITION_DATE")
+    private LocalDateTime additionDate;
+
+    @ManyToOne
+    @JoinColumn(name="SELLER_ID")
+    private SellerAccount seller;
+
+    @ManyToOne
+    @JoinColumn(name="ORDER_ID")
+    private Order order;
+
+    //CATEGORY = ENUM?
 }
