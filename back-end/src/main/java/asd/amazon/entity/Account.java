@@ -3,29 +3,30 @@ package asd.amazon.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "ACCOUNT")
-public class Account {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Account implements Serializable {
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private Long id;
 
-    //maybe class Credentials(username,password)?
-    @Basic(optional = false)
-    @Column(name = "USERNAME", unique = true)
+    //TODO: maybe class Credentials(username,password)?
+    @Column(name = "USERNAME", nullable = false , unique = true)
     private String username;
 
-    @Basic(optional = false)
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "SURNAME")
+    @Column(name = "SURNAME", nullable = false)
     private String surname;
 }

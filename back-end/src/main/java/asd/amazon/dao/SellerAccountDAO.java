@@ -1,4 +1,4 @@
-package asd.amazon.entity.dao;
+package asd.amazon.dao;
 
 public class SellerAccountDAO {
 }

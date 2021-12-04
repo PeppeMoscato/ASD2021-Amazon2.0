@@ -1,42 +1,53 @@
 package asd.amazon.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Product")
+@Table(name = "PRODUCT")
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_SEQ")
-    @SequenceGenerator(name = "PRODUCT_SEQ", sequenceName = "seq_t_product_id", allocationSize = 1)
-    @Column(name = "Id", nullable = false)
+    @GeneratedValue
+    @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     //description
-    @Column(name = "Description", nullable = true)
+    @Column(name = "DESCRIPTION", nullable = true)
     private String description;
 
-    //price? Float or Integer?
-    @Column(name = "Price", nullable = false)
+    @Column(name = "PRICE", nullable = false)
     private Float price;
 
-    //addition date? (to identify when a product was added by a seller)
-    @Basic(optional = false)
-    @Column(name = "ADDITION_DATE")
-    private LocalDateTime additionDate;
-
-    @ManyToOne
-    @JoinColumn(name="SELLER_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="SELLER_ID", referencedColumnName = "ID")
     private SellerAccount seller;
 
+    @Column(name="AVAILABLE_QUANTITY", nullable = false)
+    private Float availableQuantity;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TYPE", nullable = true) //TODO: add nullable = false
+    private Type type;
+
+    @ManyToMany(mappedBy = "soldProducts")
+    private List<Chart> charts;
+
     //CATEGORY = ENUM?
+    public enum Type{
+        VEGETABLE,
+        MEAT,
+        CEREAL
+    }
+
+    //addition date? (to identify when a product was added by a seller)
+//    @Column(name = "ADDITION_DATE",)
+//    private LocalDateTime additionDate;
 }
