@@ -1,5 +1,6 @@
 package asd.amazon.service.impl;
 
+
 import asd.amazon.dto.ProductDTO;
 import asd.amazon.entity.Product;
 import asd.amazon.repository.ProductRepository;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public ProductDTO create(ProductDTO productDTO) {
         Product product = mapProduct(productDTO);
         productRepository.save(product);
@@ -31,13 +33,13 @@ public class ProductServiceImpl implements ProductService {
         return productDTO;
     }
 
-    private Product mapProduct(ProductDTO productDTO){
+    private Product mapProduct(ProductDTO productDTO){//TODO: do map
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
         return product;
     }
-    private ProductDTO mapProduct(Product product){
+    private ProductDTO mapProduct(Product product){//TODO: do map
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());

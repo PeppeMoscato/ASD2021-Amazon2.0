@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import java.util.UUID;
 
 @Data
-public class AccountDTO {
+public abstract class AccountDTO {
 
     private Long id;
 
@@ -17,4 +17,6 @@ public class AccountDTO {
     private String name;
 
     private String surname;
+
+    private String email;
 }

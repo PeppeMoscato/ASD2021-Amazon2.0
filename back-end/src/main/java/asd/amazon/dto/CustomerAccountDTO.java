@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CustomerAccountDTO {
+public class CustomerAccountDTO extends AccountDTO {
 
     private List<ChartDTO> charts;
 }
