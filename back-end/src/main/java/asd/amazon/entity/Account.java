@@ -29,4 +29,7 @@ public abstract class Account implements Serializable {
 
     @Column(name = "SURNAME", nullable = false)
     private String surname;
+
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
 }

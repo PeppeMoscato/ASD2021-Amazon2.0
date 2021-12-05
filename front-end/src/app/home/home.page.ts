@@ -17,7 +17,7 @@ export class HomePage implements OnInit{
 
   create(){
     let p = new Product();
-    p.setName("productname")
+    p.name = "productname";
     this.productService.create(p)
     .subscribe((response: Product) => {
       console.log("Product : ",response);
